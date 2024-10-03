@@ -1,4 +1,3 @@
-package com.decroly.daw;
 
 import java.util.Scanner;
 
