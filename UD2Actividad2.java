@@ -25,7 +25,7 @@ System.out.print("Introduce tu edad: ");
 		
 		
         
-//2-Programa que pide la edad y muestra si eres mayor o menor de edad.
+    //2-Programa que pide la edad y muestra si eres mayor o menor de edad.
  System.out.print("Introduce tu edad: ");
         
  	int edad1 = scanner.nextInt();
@@ -43,7 +43,7 @@ System.out.print("Introduce tu edad: ");
         
         
         
-        //3-Programa que muestra los 20 primeros números naturales.
+ 	//3-Programa que muestra los 20 primeros números naturales.
         for (int i = 1; i <= 20; i++) {
         	
             System.out.println(i);
@@ -103,15 +103,15 @@ System.out.print("Introduce tu edad: ");
         
         
         //8-Programa que calcula el factorial de un número N.
-        System.out.print("Introduce un número positivo N: ");
-        int 1 = scanner.nextInt();
-       
-        long factorial = 1;
-        for (int i = 1; i <= N1; i++) {
-            factorial *= i;
-        }
         
-        System.out.println("El factorial de " + N1 + " es: " + factorial);
+        //System.out.print("Introduce un número positivo N: ");
+        
+        //long factorial = 1;
+        //for (int i = 1; i <= N1; i++) {
+          //  factorial *= i;
+        //}
+        
+       //System.out.println("El factorial de " + N1 + " es: " + factorial);
         
         
         
@@ -139,50 +139,60 @@ System.out.print("Introduce tu edad: ");
         System.out.printf("Hora después de un segundo: %02d:%02d:%02d\n", horas, minutos, segundos);
         
         
-        
-        //10-Programa que lee 10 números no nulos y verifica si hay algún número negativo.
-        boolean hayNegativo = false;
-
-        System.out.println("Introduce 10 números no nulos:");
+        //10        
+        boolean hayNegativos = false;
+        System.out.println("Introduce 10 numeros no nulos");
         for (int i = 0; i < 10; i++) {
-            int numero = scanner.nextInt();
-            if (numero < 0) {
-                hayNegativo = true;
-            }
+        	int numero = scanner.nextInt();
+        	if (numero < 0 ) {
+        		hayNegativos = true;
+        		
+        	}
         }
-
-        if (hayNegativo) {
-            System.out.println("Se ha leído al menos un número negativo.");
-        } else {
-            System.out.println("No se ha leído ningún número negativo.");
+       
+        if(hayNegativos) {
+        	System.out.println("Numeros negativos leidos: " + hayNegativos);
+        } 
+        
+        else {
+        	System.out.println("Numeros negativos no leidos: ");
         }
         
-        //11-Programa que cuenta cuántos números son positivos y cuántos son negativos.
-        int positivos = 0;
-        int negativos = 0;
-
-        System.out.println("Introduce 10 números no nulos:");
-        for (int i = 0; i < 10; i++) {
-            int numero = scanner.nextInt();
-            if (numero > 0) {
-                positivos++;
-            } else if (numero < 0) {
-                negativos++;
-            }
+        
+        //11
+        int[] listaNumeros = new int[10];
+        int conPos = 0, conNeg = 0, conCeros = 0;
+        for (int i = 0; i <10; i++){
+        	System.out.println("Ingresa un Numero["+(i+1)+"]=");
+        	listaNumeros[i] = scanner.nextInt();
+        	
+        	if (listaNumeros [i] == 0)
+        		conCeros++;
+        		else if (listaNumeros[i] > 0)
+        		conPos++;	
+        		else
+        			conNeg++;
         }
-
-        System.out.println("Números positivos: " + positivos);
-        System.out.println("Números negativos: " + negativos);
-
         
+        System.out.println("Numeros negativos " + conNeg);
+        for (int i = 0 ; i < 10; i++)
+        if (listaNumeros[i] > 0)
+        	System.out.print(listaNumeros[i]+"");
+        	
+        System.out.println("Numeros Positivos: " + conPos);
+        for (int i = 0 ; i < 10; i++)
+        if (listaNumeros[i] > 0)
+        	System.out.print(listaNumeros[i]+"");
         
-        //12-Programa que lee números hasta que se introduce un 0 y muestra si ha leído algún negativo, cuántos positivos y cuántos negativos.
+        System.out.println("Numeros igual a cero: " + conCeros);
+	
+      //12-Programa que lee números hasta que se introduce un 0 y muestra si ha leído algún negativo, cuántos positivos y cuántos negativos.
         int positivos = 0;
         int negativos = 0;
         boolean hayNegativo = false;
         int numero;
 
-        System.out.println("Introduce una secuencia de números no nulos (0 para terminar):");
+        System.out.println("Introduce una secuencia de números no nulos (Utiliza el 0 para terminar):");
         do {
             numero = scanner.nextInt();
             if (numero > 0) {
@@ -214,47 +224,99 @@ System.out.print("Introduce tu edad: ");
         System.out.println("La suma de los 10 primeros números naturales es: " + suma);
         System.out.println("El producto de los 10 primeros números naturales es: " + producto);
         
+        
         //14-Programa que calcula el salario neto semanal de un trabajador.
-        System.out.println("Introduce el nombre del trabajador:");
+        System.out.println("Introduce el Nombre del Trabajador: ");
+
         String nombre = scanner.nextLine();
 
-        System.out.println("Introduce las horas trabajadas:");
+        System.out.println("Introduce las horas trabajadas: ");
         double horasTrabajadas = scanner.nextDouble();
 
-        System.out.println("Introduce la tarifa por hora:");
+        System.out.println("Introduce la tarifa por hora: ");
         double tarifaHora = scanner.nextDouble();
 
-       
+
         double salarioBruto;
         if (horasTrabajadas > 35) {
             salarioBruto = 35 * tarifaHora + (horasTrabajadas - 35) * tarifaHora * 1.5;
-        } else {
-            salarioBruto = horasTrabajadas * tarifaHora;
+        } 
+
+        else {
+            
+        	salarioBruto = horasTrabajadas * tarifaHora;
         }
 
-        
+
         double impuestos;
         if (salarioBruto <= 500) {
             impuestos = 0;
-        } else if (salarioBruto <= 900) {
+        } 
+
+        else if (salarioBruto <= 900) {
             impuestos = (salarioBruto - 500) * 0.25;
-        } else {
-            impuestos = (400 * 0.25) + (salarioBruto - 900) * 0.45;
+        } 
+
+        else {
+            
+        	impuestos = (400 * 0.25) + (salarioBruto - 900) * 0.45;
         }
 
-        
+
         double salarioNeto = salarioBruto - impuestos;
 
-        
-        System.out.println("Nombre del trabajador: " + nombre);
+
+        System.out.println("Nombre del Trabajador: " + nombre);
         System.out.println("Salario bruto: " + salarioBruto);
         System.out.println("Tasas de impuestos: " + impuestos);
         System.out.println("Salario neto: " + salarioNeto);
-        
+
        
+        
+        
+        
+        
+        
+        
+        
+        	
+   //https://aprenderaprogramar.com/foros/index.php?topic=8113.0     				
+       //https://www.oracle.com/in/java/technologies/downloads/	
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         scanner.close(); 
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	}
