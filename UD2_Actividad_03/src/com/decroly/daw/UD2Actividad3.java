@@ -15,21 +15,21 @@ public class UD2Actividad3 {
 			System.out.println("Inserta el numero 3 para Multiplicar");
 			System.out.println("Inserta el numero 4 para Dividir");
 			System.out.println("Inserta el numero 5 para Salir");
-			opcion = reader.nextLine();
+			opcion = scanner.nextLine();
 				
 		switch(opcion)
         
 		{
             case "1":
-            	reader = new Scanner(System.in);
+            	scanner = new Scanner(System.in);
             	
             	System.out.print("Escribe el primer número: ");
 
-            	double num1 = reader.nextDouble();
+            	double num1 = scanner.nextDouble();
 
             	System.out.print("Escribe el segundo número: ");
 
-            	double num2 = reader.nextDouble();
+            	double num2 = scanner.nextDouble();
             	
             	double suma = num1 + num2;
             	
@@ -38,15 +38,15 @@ public class UD2Actividad3 {
             	break;
 
             case "2":
-            	reader = new Scanner(System.in);
+            	scanner = new Scanner(System.in);
             	
             	System.out.print("Escribe el primer número: ");
 
-            	double nume1 = reader.nextDouble();
+            	double nume1 = scanner.nextDouble();
 
             	System.out.print("Escribe el segundo número: ");
 
-            	double nume2 = reader.nextDouble();
+            	double nume2 = scanner.nextDouble();
             	
             	double restar = nume1 - nume2;
             	
@@ -55,15 +55,15 @@ public class UD2Actividad3 {
                 break;
 
             case "3":
-            	reader = new Scanner(System.in);
+            	scanner = new Scanner(System.in);
             	
             	System.out.print("Escribe el primer número: ");
 
-            	double numer1 = reader.nextDouble();
+            	double numer1 = scanner.nextDouble();
 
             	System.out.print("Escribe el segundo número: ");
 
-            	double numer2 = reader.nextDouble();
+            	double numer2 = scanner.nextDouble();
             	
             	double producto = numer1 * numer2;
             	
@@ -72,15 +72,15 @@ public class UD2Actividad3 {
                 break;
 
             case "4":
-            	reader = new Scanner(System.in);
+            	scanner = new Scanner(System.in);
             	
             	System.out.print("Escribe el primer número: ");
 
-            	double numero1 = reader.nextDouble();
+            	double numero1 = scanner.nextDouble();
 
             	System.out.print("Escribe el segundo número: ");
 
-            	double numero2 = reader.nextDouble();
+            	double numero2 = scanner.nextDouble();
             	
             	double division = numero1 / numero2;
             	if (numero2 != 0) {
@@ -107,96 +107,123 @@ public class UD2Actividad3 {
 
 
 		}while(!opcion.equals("5"));	
+		
+		scanner.close();
 	
 
+		System.out.println("Introduce los billetes que quierras cambiar que sean multiplo de 5: ");
 		
- System.out.print("Introduce una cantidad en euros (múltiplo de 5): ");
-        int cantidad = scanner.nextInt();
+		int cantidad = scanner.nextInt();
+		
+		if (cantidad % 5 !=0) {
+			
+			System.out.println("La cantodad tiene que ser multiplo de 5");
+			
+			scanner.close();
+			
+			return;
+		}
+
+		int billet500 = 0;
+		
+		if (cantidad >= 500) {
+			
+			billet500 = cantidad / 500;
+			cantidad = cantidad -(billet500 * 500);
+		}
+
+		int billet200 = 0;
+		
+		if (cantidad >= 200) {
+		
+			billet200 = cantidad / 200;
+			cantidad = cantidad -(billet200 * 200);
+		}
+		
+		int billet100 = 0;
+		
+		if (cantidad >= 100) {
+			
+			billet100 = cantidad / 100;
+			cantidad = cantidad -(billet100 * 100);
+		}
+
+		int billet50 = 0;
+		
+		if (cantidad >= 50) {
+			
+			billet50 = cantidad / 50;
+			cantidad = cantidad -(billet50 * 50); 
+		}
+		
+		int billet20 = 0;
+		
+		if (cantidad >= 20) {
+			
+			billet20 = cantidad / 20;
+			cantidad = cantidad -(billet20 * 20);
+		}
+		
+		int billet10 = 0;
+		
+		if (cantidad >= 10) {
+			
+			billet10 = cantidad / 10;
+			cantidad = cantidad -(billet10 * 10);
+		}
+		
+		int billet5 = 0;
+		
+		if (cantidad >= 5) {
+			
+			billet5 = cantidad / 5;
+			cantidad = cantidad -(billet5 * 5);	
+		}
+
+		System.out.println("Billetes nesesarios");
+		
+		if (billet500 > 0) {
+			
+			System.out.println(billet500 + "  de 500");
+		}
+
+		if (billet200 > 0) {
+			
+			System.out.println(billet200 + "  de 200");
+		}
+		
+		if (billet100 > 0) {
+			
+			System.out.println(billet100 + "  de 100");
+		}
+
+		if (billet50 > 0) {
+			
+			System.out.println(billet50 + "  de 50");
+		}
+		
+		if (billet20 > 0) {
+			
+			System.out.println(billet20 + "  de 20");
+		}
+
+		if (billet10 > 0) {
+			
+			System.out.println(billet10 + "  de 10");
+		}
+
+		if (billet5 > 0) {
+			
+			System.out.println(billet5 + "  de 5");
+		}
 
         
-        if (cantidad % 5 != 0) {
-            System.out.println("La cantidad debe ser un múltiplo de 5.");
-            scanner.close();
-            return; 
-        }
+        scanner.close();	
+	
+	
+	}
+}
 
-        
-        int billetes500 = 0;
-        if (cantidad >= 500) {
-            billetes500 = cantidad / 500;
-            cantidad = cantidad - (billetes500 * 500); 
-        }
-
-        
-        int billetes200 = 0;
-        if (cantidad >= 200) {
-            billetes200 = cantidad / 200;
-            cantidad = cantidad - (billetes200 * 200); 
-        }
-
-        
-        int billetes100 = 0;
-        if (cantidad >= 100) {
-            billetes100 = cantidad / 100;
-            cantidad = cantidad - (billetes100 * 100); 
-        }
-
-       
-        int billetes50 = 0;
-        if (cantidad >= 50) {
-            billetes50 = cantidad / 50;
-            cantidad = cantidad - (billetes50 * 50); 
-        }
-
-        
-        int billetes20 = 0;
-        if (cantidad >= 20) {
-            billetes20 = cantidad / 20;
-            cantidad = cantidad - (billetes20 * 20); 
-        }
-
-       
-        int billetes10 = 0;
-        if (cantidad >= 10) {
-            billetes10 = cantidad / 10;
-            cantidad = cantidad - (billetes10 * 10); 
-        }
-
-        
-        int billetes5 = 0;
-        if (cantidad >= 5) {
-            billetes5 = cantidad / 5;
-            cantidad = cantidad - (billetes5 * 5); 
-        }
-
-        
-        System.out.println("Billetes necesarios:");
-        if (billetes500 > 0) {
-            System.out.println(billetes500 + " billete(s) de 500 €");
-        }
-        if (billetes200 > 0) {
-            System.out.println(billetes200 + " billete(s) de 200 €");
-        }
-        if (billetes100 > 0) {
-            System.out.println(billetes100 + " billete(s) de 100 €");
-        }
-        if (billetes50 > 0) {
-            System.out.println(billetes50 + " billete(s) de 50 €");
-        }
-        if (billetes20 > 0) {
-            System.out.println(billetes20 + " billete(s) de 20 €");
-        }
-        if (billetes10 > 0) {
-            System.out.println(billetes10 + " billete(s) de 10 €");
-        }
-        if (billetes5 > 0) {
-            System.out.println(billetes5 + " billete(s) de 5 €");
-        }
-
-        
-        scanner.close();
-    }
-}	
 	
 	
 	
