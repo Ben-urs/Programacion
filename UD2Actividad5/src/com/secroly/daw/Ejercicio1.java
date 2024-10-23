@@ -4,20 +4,24 @@ import java.util.Scanner;
 
 public class Ejercicio1 {
 
+
+	//1-Muestra cada palabra de un texto separadas en diferentes lineas
 	public static void main(String[] args) {
 
 	        Scanner scanner = new Scanner(System.in);
 	        
-	        System.out.println("Introduce una cadena de texto:");
+	        System.out.println("Introduce un de texto:");
 	        
 	        String texto = scanner.nextLine();
 	        
-	        String[] palabras = texto.split(" ");
+	        String[] palab1 = texto.split(" ");
 	        
-	        for (String palabra : palabras) {
+	        for (String palab2 : palab1) {
 	        	
-	            System.out.println(palabra);
+	            System.out.println(palab2);
 	        }
+
+			scanner.close();
 	    }
 	}
 

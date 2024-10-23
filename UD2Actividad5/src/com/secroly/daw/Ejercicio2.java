@@ -7,32 +7,34 @@ public class Ejercicio2 {
     	
         Scanner scanner = new Scanner(System.in);
         
-        System.out.println("Introduce la primera cadena de texto:");
+        System.out.println("Introduce el primer texto:");
         
         String texto1 = scanner.nextLine();
         
-        System.out.println("Introduce la segunda cadena de texto:");
+        System.out.println("Introduce wl segundo texto:");
         
         String texto2 = scanner.nextLine();
         
         if (texto1.equals(texto2)) {
         	
-            System.out.println("Las cadenas son iguales.");    
+            System.out.println("Los textos son iguales.");    
         } 
         
         else {
         	
-            System.out.println("Las cadenas no son iguales.");
+            System.out.println("Los textos no son iguales.");
         }
 
         if (texto1.equalsIgnoreCase(texto2)) {
         	
-            System.out.println("Las cadenas son iguales ignorando mayúsculas y minúsculas.");           
+            System.out.println("Los textos son iguales ignorando mayúsculas y minúsculas.");           
         } 
         
         else {
         	
-            System.out.println("Las cadenas no son iguales ignorando mayúsculas y minúsculas.");
+            System.out.println("Los textos no son iguales ignorando mayúsculas y minúsculas.");
         }
+
+        scanner.close();
     }
 }
