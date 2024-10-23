@@ -5,15 +5,14 @@ import java.util.Scanner;
 public class Ejercicio1 {
 
 
-	//1-Muestra cada palabra de un texto separadas en diferentes lineas
+	//1-Programa que pida una cadena de texto y muestra cada palabra de un texto separadas en diferentes lineas
 	public static void main(String[] args) {
 
 	        Scanner scanner = new Scanner(System.in);
 	        
 	        System.out.println("Introduce un de texto:");
-	        
-	        String texto = scanner.nextLine();
-	        
+	        String texto = scanner.nextLine();	
+
 	        String[] palab1 = texto.split(" ");
 	        
 	        for (String palab2 : palab1) {
