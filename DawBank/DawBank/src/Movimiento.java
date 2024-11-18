@@ -10,7 +10,7 @@ public class Movimiento {
 
     public Movimiento(String tipo, double cantidad) {
         this.id = contadorID++;
-        this.fecha = new FechaNueva("dd/MM/yyyy")(new fecha());
+        this.fecha = new FechaNueva("dd/MM/yyyy");
         this.tipo = tipo;
         this.cantidad = cantidad;
     }

@@ -5,8 +5,11 @@ public class DawBank {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Introduce el IBAN:");
+
         String iban = scanner.nextLine();
+
         System.out.println("Introduce el titular:");
+
         String titular = scanner.nextLine();
 
         App cuenta;
@@ -18,8 +21,9 @@ public class DawBank {
         }
 
         int opcion;
+
         do {
-            System.out.println("\nMenú:");
+            System.out.println("Menú:");
             System.out.println("1. Datos de la cuenta");
             System.out.println("2. IBAN");
             System.out.println("3. Titular");
@@ -60,12 +64,14 @@ public class DawBank {
                     break;
                 case 6:
                     System.out.print("Cantidad a retirar: ");
+
                     double retirada = scanner.nextDouble();
                     cuenta.retirar(retirada);
 
                     break;
                 case 7:
                     System.out.println("Movimientos:");
+
                     for (Movimiento m : cuenta.getMovimientos()) {
                         m.mostrarInfoMovimiento();
 
@@ -73,11 +79,12 @@ public class DawBank {
                     break;
                 case 8:
                     System.out.println("Saliendo del programa...");
-                    
+
                     break;
                 default:
                     System.out.println("Opción no válida.");
             }
+
         } while (opcion != 8);
 
         scanner.close();
