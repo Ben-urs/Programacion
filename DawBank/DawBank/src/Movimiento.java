@@ -2,10 +2,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Movimiento {
-    private static int contadorID = 1; // Contador para IDs únicos
+    private static int contadorID = 1; 
     private int id;
     private String fecha;
-    private String tipo; // "Ingreso" o "Retirada"
+    private String tipo; 
     private double cantidad;
 
     public Movimiento(String tipo, double cantidad) {
@@ -16,6 +16,7 @@ public class Movimiento {
     }
 
     public void mostrarInfoMovimiento() {
+        
         System.out.println("ID: " + id + ", Fecha: " + fecha + ", Tipo: " + tipo + ", Cantidad: " + cantidad + "€");
     }
 }
