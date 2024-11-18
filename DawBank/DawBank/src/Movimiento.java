@@ -1,5 +1,5 @@
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.text.FechaNueva;
+import java.util.fecha;
 
 public class Movimiento {
     private static int contadorID = 1; 
@@ -10,7 +10,7 @@ public class Movimiento {
 
     public Movimiento(String tipo, double cantidad) {
         this.id = contadorID++;
-        this.fecha = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
+        this.fecha = new FechaNueva("dd/MM/yyyy")(new fecha());
         this.tipo = tipo;
         this.cantidad = cantidad;
     }
