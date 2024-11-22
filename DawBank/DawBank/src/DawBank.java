@@ -15,6 +15,7 @@ public class DawBank {
         App cuenta;
         try {
             cuenta = new App(iban, titular);
+
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
             return;
@@ -78,7 +79,7 @@ public class DawBank {
                     }
                     break;
                 case 8:
-                    System.out.println("Saliendo del programa...");
+                    System.out.println("Saliendo del programa.");
 
                     break;
                 default:

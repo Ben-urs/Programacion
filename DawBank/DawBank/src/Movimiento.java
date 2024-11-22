@@ -1,5 +1,6 @@
-import java.text.FechaNueva;
-import java.util.fecha;
+import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Movimiento {
     private static int contadorID = 1; 
@@ -10,7 +11,7 @@ public class Movimiento {
 
     public Movimiento(String tipo, double cantidad) {
         this.id = contadorID++;
-        this.fecha = new FechaNueva("dd/MM/yyyy");
+        this.fecha = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         this.tipo = tipo;
         this.cantidad = cantidad;
     }

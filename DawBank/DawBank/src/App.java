@@ -12,8 +12,10 @@ public class App {
 
     public App(String iban, String titular) {
         if (!iban.matches("[A-Z]{2}\\d{22}")) {
+
             throw new IllegalArgumentException("IBAN inválido");
         }
+
         this.iban = iban;
         this.titular = titular;
         this.saldo = 0;
@@ -38,25 +40,33 @@ public class App {
 
     public void ingresar(double cantidad) {
         if (cantidad <= 0) {
+
             System.out.println("La cantidad debe ser mayor a 0.");
+
             return;
         }
+
         saldo += cantidad;
         movimientos.add(new Movimiento("Ingreso", cantidad));
+
         if (cantidad > LIMITE_HACIENDA) {
+            
             System.out.println("AVISO: Notificar a hacienda");
         }
     }
 
     public void retirar(double cantidad) {
         if (cantidad <= 0) {
+
             System.out.println("La cantidad debe ser mayor a 0.");
             return;
         }
         if (saldo - cantidad < SALDO_MINIMO) {
+
             System.out.println("Operación no permitida: saldo insuficiente.");
             return;
         }
+
         saldo -= cantidad;
         movimientos.add(new Movimiento("Retirada", cantidad));
         if (saldo < 0) {
