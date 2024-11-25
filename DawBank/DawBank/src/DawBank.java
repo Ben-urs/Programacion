@@ -4,35 +4,27 @@ public class DawBank {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Bienvenido a DawBank");
-        System.out.println();
-        System.out.println("Recuerda que debe comenzar por 2 letra mayusculas y 22 numeros");
-        System.out.println("Ejemplo: EL9999999999999999999999");
-        System.out.println();
-        System.out.println("Introduce tu IBAN:");
-
-        final String patronIBAN = "[A-Z]{2}[0-9]{22}";
+        System.out.println("Introduce el IBAN:");
 
         String iban = scanner.nextLine();
 
-        while (!iban.matches(patronIBAN)) {
-            System.out.println("IBAN invalido. Debe comenzar por 2 letras mayusculas seguidas de 22 numeros");
-            System.out.println();
-            System.out.println("Introduce un IBAN valido:");
-
-            iban = scanner.nextLine();
-        }
-
-        System.out.println("Introduce el nombre del titular de la cuenta:");
+        System.out.println("Introduce el titular:");
 
         String titular = scanner.nextLine();
 
-        CuentaBancaria cuenta = new CuentaBancaria(iban, titular);
-        
+        App cuenta;
+        try {
+            cuenta = new App(iban, titular);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+            return;
+        }
+
         int opcion;
 
         do {
-            System.out.println("Menu:");
+            System.out.println("Menú:");
             System.out.println("1. Datos de la cuenta");
             System.out.println("2. IBAN");
             System.out.println("3. Titular");
@@ -41,7 +33,7 @@ public class DawBank {
             System.out.println("6. Retirada");
             System.out.println("7. Movimientos");
             System.out.println("8. Salir");
-            System.out.print("Seleccione una opcion: ");
+            System.out.print("Elige una opción: ");
 
             opcion = scanner.nextInt();
 
@@ -52,59 +44,49 @@ public class DawBank {
                     System.out.println("Saldo: " + cuenta.getSaldo() + "€");
 
                     break;
-
                 case 2:
                     System.out.println("IBAN: " + cuenta.getIban());
 
                     break;
-
                 case 3:
                     System.out.println("Titular: " + cuenta.getTitular());
 
                     break;
-
                 case 4:
                     System.out.println("Saldo: " + cuenta.getSaldo() + "€");
 
                     break;
-
                 case 5:
                     System.out.print("Cantidad a ingresar: ");
-                    
-                    double ingreso = scanner.nextDouble();
 
+                    double ingreso = scanner.nextDouble();
                     cuenta.ingresar(ingreso);
 
                     break;
-
                 case 6:
                     System.out.print("Cantidad a retirar: ");
 
                     double retirada = scanner.nextDouble();
-
                     cuenta.retirar(retirada);
 
                     break;
-
                 case 7:
                     System.out.println("Movimientos:");
 
-                    cuenta.mostrarMovimientos();
+                    for (Movimiento m : cuenta.getMovimientos()) {
+                        m.mostrarInfoMovimiento();
 
+                    }
                     break;
-
                 case 8:
-                    System.out.println("Saliendo del programa");
-                    System.out.println("Hasta otra");
+                    System.out.println("Saliendo del programa.");
 
                     break;
-
                 default:
-                    System.out.println("Opcion no valida, Introduzca una de las opcion mostradas en pantalla");
+                    System.out.println("Opción no válida.");
             }
-        } 
-        
-        while (opcion != 8);
+
+        } while (opcion != 8);
 
         scanner.close();
     }
