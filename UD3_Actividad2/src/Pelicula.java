@@ -1,17 +1,29 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.tools.DocumentationTool.Location;
 
 public class Pelicula {
     private int CodPelicula;
     private String Titulo;
-    private enum String Genero;
+    private String Genero;
     private String FechaRegistro;
     private String FechaBaja;
+    private String FechaAlquiler;
     private GestionVideoDaw[] GestionVideoDaw;
     private int GestionVideo;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:SS");
+    
+    public static boolean ComprobarAlquilada(String IsAlquilada) {
+        boolean IsAlquilada = false;
+        Pattern pat = Pattern.compile("patron");
+        Matcher mat = pat.matcher(IsAlquilada);
+        IsAlquilada = mat.matches();
+        return IsAlquilada;
+    }
+
 
     public Pelicula(String Titulo, String Genero) {
         this.CodPelicula = CodPelicula;
@@ -19,6 +31,7 @@ public class Pelicula {
         this.Genero = Genero;
         this.FechaRegistro = LocalDateTime.now().format(formatter);
         this.FechaBaja = LocalDateTime.now().format(formatter);
+        this.FechaAlquiler = LocalDateTime.noe().format(formatter);
         this.GestionVideoDaw = new Movimiento[100];
         this.nMovimientos = 0;
     }

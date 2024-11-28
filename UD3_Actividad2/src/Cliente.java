@@ -1,122 +1,124 @@
-import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.tools.DocumentationTool.Location;
 
 public class Cliente {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    private String dni;
+    private String nombre;
+    private String numSocio = "[A-Z]{1}[0-9]{4}";
+    private String Direccion;
+    private String FechaNacimiento;
+    private String FechaBaja;
+    private String PeliculasAlquiladas;
+    private int GestionVideo;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:SS");
+    
+    public Clientes(String dni, String nombre, String numSocio, String Direccion, String FechaNacimiento, String FechaBaja, int GestionVideo) {
+        this.dni = dni;
+        this.nombre = nombre;
+        this.numSocio = numSocio;
+        this.Direcciom = Direccion;
+        this.FechaNacimiento = LocalDateTime.now().format(formatter);
+        this.FechaBaja = LocalDateTime.now().format(formatter);
+        this.PeliculasAlquiladas = Pelicula[];
+        this.GestionVideo = GestionVideo;
+    }
 
-        System.out.println("Bienvenido a VideoDaw");
-        System.out.println();
-        System.out.println("Recuerda que debe comenzar por 2 letra mayusculas y 22 numeros");
-        System.out.println("Ejemplo: EL9999999999999999999999");
-        System.out.println();
-        System.out.println("Introduce tu DNI: ");
-        System.out.println("Introduce tu Direccion: ");
-        System.out.println("Introduce tu fecha de nacimiento: ");
+    public String getDNI() {
+        return dni;
+    }
 
-        final String dniIdentificar = "[A-Z]{1}[0-9]{8}";
-        final String numSocio = "[A-Z]{1}-[0-9]{4}";
+    public String getNombre() {
+        return nombre;
+    }
 
-        String codSocio = scanner.nextLine();
+    public String getNumeroSocio() {
+        return numSocio;
+    }
 
-        while (!codSocio.matches(dniIdentificar)) {
-            System.out.println("Formato DNI invalido. Debe comenzar por 1 letra mayuscula seguida de 4 numeros");
-            System.out.println();
-            System.out.println("Introduce un DNI valido: ");
+    public String getDireccion() {
+        return Direccion;
+    }
 
-            codSocio = scanner.nextLine();
+    public String getFechaNacimiento() {
+        return FechaNacimiento;
+    } 
+
+    public String getFechaBaja() {
+        return FechaBaja;
+    }
+
+    public void registrarClientes(String dni, String nombre, String numSocio) {
+        if (registroCliente) {
+            System.out.println("");
+
+            return;
         }
 
-        while (!codSocio.matches(numSocio)) {
-            System.out.println("Numero de socio invalido. Debe comenzar por 1 letra mayuscula seguida de 4 numeros");
-            System.out.println();
-            System.out.println("Introduce un Numero de socio valido: ");
+        registroCliente [registrarClientes(dni, nombre, numSocio);] = new registroCliente(DNI, Nombre , NumeroSocio);
 
-            codSocio = scanner.nextLine();
-        }
+        GestionVideo++;
+    }
 
-        System.out.println("Introduce tu nombre:");
+    public void mostrarMovimientos() {
+        if (nMovimientos == 0) {
+            System.out.println("No existen movimientos");
 
-        String usuario = scanner.nextLine();
-
-        VideoDaw cuenta = new VideoDaw(dniIdentificar, numSocio);
-        
-        int opcion;
-
-        do {
-            System.out.println("Menu:");
-            System.out.println("1. Datos de la cuenta");
-            System.out.println("2. DNI");
-            System.out.println("3. Titular");
-            System.out.println("4. Saldo");
-            System.out.println("5. Ingreso");
-            System.out.println("6. Retirada");
-            System.out.println("7. Movimientos");
-            System.out.println("8. Salir");
-            System.out.print("Seleccione una opcion: ");
-
-            opcion = scanner.nextInt();
-
-            switch (opcion) {
-                case 1:
-                    System.out.println("IBAN: " + cuenta.getIban());
-                    System.out.println("Titular: " + cuenta.getTitular());
-                    System.out.println("Saldo: " + cuenta.getSaldo() + "€");
-
-                    break;
-
-                case 2:
-                    System.out.println("IBAN: " + cuenta.getIban());
-
-                    break;
-
-                case 3:
-                    System.out.println("Titular: " + cuenta.getTitular());
-
-                    break;
-
-                case 4:
-                    System.out.println("Saldo: " + cuenta.getSaldo() + "€");
-
-                    break;
-
-                case 5:
-                    System.out.print("Cantidad a ingresar: ");
-                    
-                    double ingreso = scanner.nextDouble();
-
-                    cuenta.ingresar(ingreso);
-
-                    break;
-
-                case 6:
-                    System.out.print("Cantidad a retirar: ");
-
-                    double retirada = scanner.nextDouble();
-
-                    cuenta.retirar(retirada);
-
-                    break;
-
-                case 7:
-                    System.out.println("Movimientos:");
-
-                    cuenta.mostrarMovimientos();
-
-                    break;
-
-                case 8:
-                    System.out.println("Saliendo del programa");
-                    System.out.println("Hasta otra");
-
-                    break;
-
-                default:
-                    System.out.println("Opcion no valida, Introduzca una de las opcion mostradas en pantalla");
-            }
         } 
         
-        while (opcion != 8);
+        else {
+            for (int i = 0; i < nMovimientos; i++) {
+                movimientos[i].mostrarInfoPelicula();
+            }
+        }
+    }
 
-        scanner.close();
+    public void ingresar(double cantidad) {
+        if (cantidad <= 0) {
+            System.out.println("La cantidad debe ser mayor que 0");
+
+            return;
+        }
+
+        if (cantidad >= MaximoAvisoHacienda) {
+            System.out.println("AVISO: Notificar a hacienda");
+        }
+
+        saldo += cantidad;
+
+        registrarMovimiento("Ingreso", cantidad);
+    }
+
+    public void retirar(double cantidad) {
+        if (cantidad <= 0) {
+            System.out.println("La cantidad debe ser mayor que 0");
+
+            return;
+        }
+
+        if (saldo - cantidad < SaldoMinimo) {
+            System.out.println("AVISO: Saldo insuficiente, no se puede realizar la retirada");
+
+            return;
+        }
+
+        if (cantidad >= MaximoAvisoHacienda) {
+            System.out.println("AVISO: Notificar a hacienda");
+        }
+
+        saldo -= cantidad;
+
+        registrarMovimiento("Retirada", cantidad);
+
+        if (saldo < 0) {
+            System.out.println("AVISO: Saldo negativo");
+        }
+    }
+    private boolean isvalidardni(String dni){
+       return dni.matches("[0-9]{8}[A-Z]$");
     }
 }
+
