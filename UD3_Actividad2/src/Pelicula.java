@@ -8,16 +8,16 @@ import javax.tools.DocumentationTool.Location;
 public class Pelicula {
     private int CodPelicula;
     private String Titulo;
-    private String Genero;
+    private Genero Genero;
     private String FechaRegistro;
     private String FechaBaja;
     private String FechaAlquiler;
     private GestionVideoDaw[] GestionVideoDaw;
+    boolean IsAlquilada = false;
     private int GestionVideo;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:SS");
     
     public static boolean ComprobarAlquilada(String IsAlquilada) {
-        boolean IsAlquilada = false;
         Pattern pat = Pattern.compile("patron");
         Matcher mat = pat.matcher(IsAlquilada);
         IsAlquilada = mat.matches();
@@ -25,7 +25,7 @@ public class Pelicula {
     }
 
 
-    public Pelicula(String Titulo, String Genero) {
+    public Pelicula(String Titulo,Genero Genero) {
         this.CodPelicula = CodPelicula;
         this.Titulo = Titulo;
         this.Genero = Genero;
