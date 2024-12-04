@@ -16,11 +16,11 @@ public class Cliente {
     private int GestionVideo;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:SS");
     
-    public Clientes(String dni, String nombre, String numSocio, String Direccion, String FechaNacimiento, String FechaBaja, int GestionVideo) {
+    public Cliente(String dni, String nombre, String numSocio, String Direccion, String FechaNacimiento, String FechaBaja, int GestionVideo) {
         this.dni = dni;
         this.nombre = nombre;
         this.numSocio = numSocio;
-        this.Direcciom = Direccion;
+        this.Direccion = Direccion;
         this.FechaNacimiento = LocalDateTime.now().format(formatter);
         this.FechaBaja = LocalDateTime.now().format(formatter);
         this.PeliculasAlquiladas = Pelicula[];
@@ -51,6 +51,9 @@ public class Cliente {
         return FechaBaja;
     }
 
+    public String getPeliculasAlquiladas() {
+        return PeliculasAlquiladas;
+
     public void registrarClientes(String dni, String nombre, String numSocio) {
         if (registroCliente) {
             System.out.println("");
@@ -58,63 +61,35 @@ public class Cliente {
             return;
         }
 
-        registroCliente [registrarClientes(dni, nombre, numSocio);] = new registroCliente(DNI, Nombre , NumeroSocio);
+        registroCliente [registrarClientes(dni, nombre, numSocio, Direccion, FechaNacimiento);] = new registroCliente(dni, nombre , numSocio, Direccion, FechaNacimiento); 
 
         GestionVideo++;
     }
 
-    public void mostrarMovimientos() {
-        if (nMovimientos == 0) {
-            System.out.println("No existen movimientos");
+    public void mostrarinfoCliente(String dni, String nombre, String numSocio, String Direccion) {
+        if (infoCliente() == 0) {
+            System.out.println("No existe informacion de este cliente");
 
         } 
         
         else {
-            for (int i = 0; i < nMovimientos; i++) {
-                movimientos[i].mostrarInfoPelicula();
+            for (int i = 0; i < infoCliente(); i++) {
+                mostrarinfoCliente();[i].mostrarInCliente();
             }
         }
     }
 
-    public void ingresar(double cantidad) {
-        if (cantidad <= 0) {
-            System.out.println("La cantidad debe ser mayor que 0");
+    public void mostrarPeliculasAlquiladas() {
+        if (peliculaAlquilada() == 0) {
+            System.out.println("No tiene ninguna Pelicula Alquilada");
 
             return;
         }
 
-        if (cantidad >= MaximoAvisoHacienda) {
-            System.out.println("AVISO: Notificar a hacienda");
-        }
-
-        saldo += cantidad;
-
-        registrarMovimiento("Ingreso", cantidad);
-    }
-
-    public void retirar(double cantidad) {
-        if (cantidad <= 0) {
-            System.out.println("La cantidad debe ser mayor que 0");
-
-            return;
-        }
-
-        if (saldo - cantidad < SaldoMinimo) {
-            System.out.println("AVISO: Saldo insuficiente, no se puede realizar la retirada");
-
-            return;
-        }
-
-        if (cantidad >= MaximoAvisoHacienda) {
-            System.out.println("AVISO: Notificar a hacienda");
-        }
-
-        saldo -= cantidad;
-
-        registrarMovimiento("Retirada", cantidad);
-
-        if (saldo < 0) {
-            System.out.println("AVISO: Saldo negativo");
+        else{
+            for (int i = 0; i < peliculaAlquilada(); i++) {
+                mostrarPeliculasAlquiladas();[i].mostrarInfoPelicula();
+            }
         }
     }
     private boolean isvalidardni(String dni){
@@ -122,3 +97,4 @@ public class Cliente {
     }
 }
 
+}
