@@ -25,101 +25,79 @@ public class Pelicula {
     }
 
 
-    public Pelicula(String Titulo,Genero Genero) {
+    public Pelicula(int CodPelicula, String Titulo,Genero Genero, String FechaAlquiler, String FechaBaja, GestionVideoDaw[] GestionVideoDaw, int GestionVideo) {
         this.CodPelicula = CodPelicula;
         this.Titulo = Titulo;
         this.Genero = Genero;
         this.FechaRegistro = LocalDateTime.now().format(formatter);
         this.FechaBaja = LocalDateTime.now().format(formatter);
-        this.FechaAlquiler = LocalDateTime.noe().format(formatter);
-        this.GestionVideoDaw = new Movimiento[100];
-        this.nMovimientos = 0;
+        this.FechaAlquiler = LocalDateTime.now().format(formatter);
+        this.GestionVideoDaw = GestionVideoDaw;
+        this.GestionVideo = GestionVideo;
+        
     }
 
     public int getCodPelicula() {
-        return codpelicula;
+        return CodPelicula;
     }
 
     public String getTitulo() {
-        return titulo;
+        return Titulo;
     }
 
-    public String getGenero() {
-        return genero;
+    public Genero getGenero() {
+        return Genero;
     }
 
     public String FechaRegistro() {
-        return fecharegistro;
+        return FechaRegistro;
     }
 
     public String FechaBaja() {
-        return fechabaja;
+        return FechaBaja;
     } 
 
-    public void registrarMovimiento(String tipo, double cantidad) {
-        if (nMovimientos >= 100) {
-            System.out.println("No se pueden realizar más movimientos");
-
-            return;
-        }
-
-        movimientos[nMovimientos] = new Movimiento(tipo, cantidad);
-
-        nMovimientos++;
+    public String getFechaAlquiler() {
+        return FechaAlquiler;
     }
 
-    public void mostrarMovimientos() {
-        if (nMovimientos == 0) {
-            System.out.println("No existen movimientos");
+    public GestionVideoDaw[] geGestionVideoDaw() {
+        return GestionVideoDaw;
+    }
 
-        } 
-        
-        else {
-            for (int i = 0; i < nMovimientos; i++) {
-                movimientos[i].mostrarInfoMovimiento();
+    public int GestionVideo() {
+        return GestionVideo;
+    }
+
+    public void mostrarInfoPelicula(int CodPelicula , String Titulo, Genero Genero, String FechaRegistro, String FechaBaja, String FechaAlquiler) {
+        if (InfoPelicula()) {
+            System.out.println("No hay Peliculas registrados.");
+
+        } else {
+            System.out.println("Peliculas registrados:");
+
+            Pelicula[] peliculasRegistradas;
+                        for (Pelicula Pelicula : peliculasRegistradas) {
+                System.out.println(" " + Pelicula.getTitulo());
             }
         }
     }
 
-    public void ingresar(double cantidad) {
-        if (cantidad <= 0) {
-            System.out.println("La cantidad debe ser mayor que 0");
-
-            return;
-        }
-
-        if (cantidad >= MaximoAvisoHacienda) {
-            System.out.println("AVISO: Notificar a hacienda");
-        }
-
-        saldo += cantidad;
-
-        registrarMovimiento("Ingreso", cantidad);
-    }
-
-    public void retirar(double cantidad) {
-        if (cantidad <= 0) {
-            System.out.println("La cantidad debe ser mayor que 0");
-
-            return;
-        }
-
-        if (saldo - cantidad < SaldoMinimo) {
-            System.out.println("AVISO: Saldo insuficiente, no se puede realizar la retirada");
-
-            return;
-        }
-
-        if (cantidad >= MaximoAvisoHacienda) {
-            System.out.println("AVISO: Notificar a hacienda");
-        }
-
-        saldo -= cantidad;
-
-        registrarMovimiento("Retirada", cantidad);
-
-        if (saldo < 0) {
-            System.out.println("AVISO: Saldo negativo");
+    public static boolean peliculaAlquilada(int CodPelicula, String Titulo, String FechaAlquiler) {
+        
+        boolean isAlquilada = false;
+        
+        if{
+            this.FechaAlquiler = FechaAlquiler;
+            isAlquilada = true;
         }
     }
+    
+
+
+
+
+
+
+}
 }
