@@ -9,11 +9,11 @@ public class VideoDaw {
     private String CIF;
     private String Direccion;
     private String FechaAlta;
-    private String PeliculasRegistradas = Pelicula[];
-    private String ClientesRegistrados = Cliente[];
+    private Pelicula[] PeliculasRegistradas;
+    private Cliente[] ClientesRegistrados;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:SS");
     
-    public VideoDaw(String CIF, String Direccion, String FechaAlta, String PeliculasRegistradas, String ClientesRegistrados) {
+    public VideoDaw(String CIF, String Direccion, String FechaAlta, Pelicula[] PeliculasRegistradas, Cliente[] ClientesRegistrados) {
         this.CIF = CIF;
         this.Direccion = Direccion;
         this.FechaAlta = LocalDateTime.now().format(formatter);;
@@ -84,7 +84,7 @@ public class VideoDaw {
         }
     }
 
-    public void devolverPelicula(Pelicula, Cliente ) {
+    public void devolverPelicula(Pelicula , Cliente ) {
         if (Pelicula.getPeliculasAlquiladas()) {
             Pelicula.setIsAlquilada(false);
             Pelicula.getPeliculasAlquiladas();

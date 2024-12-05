@@ -12,18 +12,18 @@ public class Cliente {
     private String Direccion;
     private String FechaNacimiento;
     private String FechaBaja;
-    private String PeliculasAlquiladas;
+    private Pelicula[] PeliculasAlquiladas;
     private int GestionVideo;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:SS");
     
-    public Cliente(String dni, String nombre, String numSocio, String Direccion, String FechaNacimiento, String FechaBaja, int GestionVideo) {
+    public Cliente(String dni, String nombre, String numSocio, String Direccion, String FechaNacimiento, String FechaBaja, Pelicula[] PeliculasAlquiladas, int GestionVideo) {
         this.dni = dni;
         this.nombre = nombre;
         this.numSocio = numSocio;
         this.Direccion = Direccion;
         this.FechaNacimiento = LocalDateTime.now().format(formatter);
         this.FechaBaja = LocalDateTime.now().format(formatter);
-        this.PeliculasAlquiladas = Pelicula[];
+        this.PeliculasAlquiladas = PeliculasAlquiladas;
         this.GestionVideo = GestionVideo;
     }
 
@@ -74,7 +74,8 @@ public class Cliente {
         
         else {
             for (int i = 0; i < infoCliente(); i++) {
-                mostrarinfoCliente();[i].mostrarInCliente() {
+                mostrarinfoCliente()
+                [i].mostrarInCliente() {
                     System.out.println("DNI: " + dni);
                     System.out.println("Nombre: " + nombre);
                     System.out.println("Número de Socio: " + numSocio);
@@ -98,7 +99,7 @@ public class Cliente {
             }
         }
     }
-    private boolean isvalidardni(String dni){
+    private boolean isvalidardni(String dni) {
        return dni.matches("[0-9]{8}[A-Z]$");
     }
 }
