@@ -74,7 +74,13 @@ public class Cliente {
         
         else {
             for (int i = 0; i < infoCliente(); i++) {
-                mostrarinfoCliente();[i].mostrarInCliente();
+                mostrarinfoCliente();[i].mostrarInCliente() {
+                    System.out.println("DNI: " + dni);
+                    System.out.println("Nombre: " + nombre);
+                    System.out.println("Número de Socio: " + numSocio);
+                    System.out.println("Dirección: " + Direccion);
+                    System.out.println("Fecha de Nacimiento: " + FechaNacimiento);
+                    System.out.println("Fecha de Baja: " + (FechaBaja != null ? FechaBaja : "No disponible"));
             }
         }
     }
@@ -97,4 +103,5 @@ public class Cliente {
     }
 }
 
+}
 }
