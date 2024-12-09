@@ -53,7 +53,7 @@ class Cliente {
         } 
         
         else {
-            System.out.println("No se pueden alquilar más películas.");
+            System.out.println("No se pueden alquilar más peliculas.");
         }
     }
     
@@ -69,23 +69,23 @@ class Cliente {
             }
         }
 
-        System.out.println("La película no está alquilada por este cliente.");
+        System.out.println("La pelicula no esta alquilada por este cliente.");
     }
 
     public String mostrarInfoCliente() {
-       String infoCliente = String.format("DNI:%s, Nombre:%s, Numero de Socio:%s", 
-        this.dni, this.nombre, this.numSocio);
+       String infoCliente = String.format("DNI:%s, Nombre:%s, Numero de Socio:%s, Direccion:%s, Fecha de Nacimiento:%s, Fecha de Baja%s", 
+        this.dni, this.nombre, this.numSocio, this.direccion, this.fechaNacimiento, this.fechaBaja);
 
         return infoCliente;
     }
 
     public String mostrarPeliculasAlquiladas() {
-        StringBuilder sb = new StringBuilder("Películas alquiladas:");
+        String info = "Peliculas alquiladas:"; 
 
         for (int i = 0; i < numPeliculasAlquiladas; i++) {
-            sb.append(peliculasAlquiladas[i].mostrarInfoPelicula()).append("");
+            info += peliculasAlquiladas[i].mostrarInfoPelicula() + ""; 
         }
         
-        return sb.toString();
+        return info;
     }
 }

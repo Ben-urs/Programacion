@@ -88,8 +88,24 @@ class VideoDaw {
         }
     }
 
+    public int getNumPeliculas() {
+        return numPeliculas;
+    }
+    
+    public Pelicula[] getPeliculasRegistradas() {
+        return peliculasRegistradas;
+    }
+    
+    public int getNumClientes() {
+        return numClientes;
+    }
+    
+    public Cliente[] getClientesRegistrados() {
+        return clientesRegistrados;
+    }
+
     public String mostrarInfoVideoClub() {
-        String infoVideoClub = String.format("Informacion del Video club - CIF:%s, Dirección:%s", 
+        String infoVideoClub = String.format("Informacion del Video club - CIF:%s, Direccion:%s", 
         this.cif, this.direccion);
     
         return infoVideoClub;
