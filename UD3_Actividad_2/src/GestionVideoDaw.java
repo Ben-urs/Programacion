@@ -1,8 +1,6 @@
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.Period;
 
 public class GestionVideoDaw {
     public static void main(String[] args) throws Exception {
@@ -10,7 +8,7 @@ public class GestionVideoDaw {
 
         System.out.println("Bienvenido a VideoDaw");
         System.out.println();
-        System.out.println("Selecciona una de las suiguientes opciones");
+        System.out.println("Selecciona una de las siguientes opciones");
         System.out.println();
         System.out.println("Menu");
 
@@ -36,7 +34,7 @@ public class GestionVideoDaw {
                     do {
                         System.out.println();
                         System.out.println("Introduzca el CIF para registrar el VideoClub");
-                        System.out.println("Recuerta que el CIF Comienza por una Letra y 8 numeros (ej. L99999999)");
+                        System.out.println("Recuerda que el CIF comienza por una letra y 8 números (ej. L99999999)");
                         System.out.println();
 
                         cif = teclado.nextLine().toUpperCase();
@@ -45,16 +43,12 @@ public class GestionVideoDaw {
                             System.out.println();
                             System.out.println("CIF correcto");
                             System.out.println();
-                        } 
-
-                        else {
+                        } else {
                             System.out.println();
-                            System.out.println("CIF incorrecto, intentelo denuevo");
+                            System.out.println("CIF incorrecto, intentelo de nuevo");
                             System.out.println();
                         }
-                    } 
-                    
-                    while (!setValidCif(cif));
+                    } while (!setValidCif(cif));
 
                     System.out.println();
                     System.out.println("Introduce la direccion del Video Club");
@@ -75,12 +69,11 @@ public class GestionVideoDaw {
                         System.out.println();
                         System.out.println("Primero registra un Video Club");
                         System.out.println();
-
                         break;
                     }
 
                     System.out.println();
-                    System.out.println("Introduce el codigo de la pelicula (ej. P-0001):");
+                    System.out.println("Introduce el código de la pelicula (ej. P-0001):");
                     System.out.println();
 
                     String codigo = teclado.nextLine();
@@ -104,12 +97,14 @@ public class GestionVideoDaw {
                     System.out.println();
                     System.out.println("Pelicula registrada");
                     System.out.println();
-
+                    
+                    mostrarPeliculasRegistradas(videoClub);
                     break;
 
                 case "3":
                     System.out.println();
-                    System.out.println("Introduce el DNI del cliente:");
+                    System.out.println("Introduce el DNI del cliente");
+                    System.out.println("Recuerda que el DNI comienza por una 8 números y una letra (ej. 99999999L)");
                     System.out.println();
 
                     String dni = teclado.nextLine();
@@ -121,13 +116,13 @@ public class GestionVideoDaw {
                     String nombre = teclado.nextLine();
 
                     System.out.println();
-                    System.out.println("Introduce el numero de socio (ej. S-0001):");
+                    System.out.println("Introduce el número de socio (ej. S-0001):");
                     System.out.println();
 
                     String numSocio = teclado.nextLine();
 
                     System.out.println();
-                    System.out.println("Introduce la direccion del cliente:");
+                    System.out.println("Introduce la dirección del cliente:");
                     System.out.println();
 
                     String direccionCliente = teclado.nextLine();
@@ -138,21 +133,27 @@ public class GestionVideoDaw {
 
                     LocalDate fechaNacimiento = LocalDate.parse(teclado.nextLine());
 
-                    Cliente cliente = new Cliente(dni, nombre, numSocio, direccionCliente, fechaNacimiento, null);
-                    videoClub.registrarCliente(cliente);
+                    if (esMayorDeEdad(fechaNacimiento)) {
+                        Cliente cliente = new Cliente(dni, nombre, numSocio, direccionCliente, fechaNacimiento, null);
+                        videoClub.registrarCliente(cliente);
 
-                    System.out.println();
-                    System.out.println("Cliente registrado");
-                    System.out.println();
-
+                        System.out.println();
+                        System.out.println("Cliente registrado");
+                        System.out.println();
+                        
+                        mostrarClientesRegistrados(videoClub);
+                    } else {
+                        System.out.println();
+                        System.out.println("El cliente debe tener al menos 18 años para registrarse");
+                        System.out.println();
+                    }
                     break;
 
                 case "4":
                     if (videoClub == null) {
                         System.out.println();
-                        System.out.println("Primero registrar un Video Club");
+                        System.out.println("Primero registra un Video Club");
                         System.out.println();
-
                         break;
                     }
 
@@ -169,7 +170,6 @@ public class GestionVideoDaw {
                     String dniCliente = teclado.nextLine();
                 
                     Cliente clienteAlquiler = videoClub.buscarCliente(dniCliente);
-
                     Pelicula peliculaAlquiler = videoClub.buscarPelicula(codigoAlquiler);
 
                     if (clienteAlquiler != null && peliculaAlquiler != null && !peliculaAlquiler.isAlquilada()) {
@@ -178,9 +178,9 @@ public class GestionVideoDaw {
                         System.out.println();
                         System.out.println("Pelicula alquilada");
                         System.out.println();
-                    } 
-                    
-                    else {
+                        
+                        mostrarPeliculasAlquiladas(clienteAlquiler);
+                    } else {
                         System.out.println();
                         System.out.println("No se puede alquilar esta pelicula");
                         System.out.println();
@@ -202,7 +202,6 @@ public class GestionVideoDaw {
                     String dniClienteDevolucion = teclado.nextLine();
 
                     Cliente clienteDevolucion = videoClub.buscarCliente(dniClienteDevolucion);
-
                     Pelicula peliculaDevolucion = videoClub.buscarPelicula(codigoDevolucion);
 
                     if (clienteDevolucion != null && peliculaDevolucion != null) {
@@ -211,11 +210,9 @@ public class GestionVideoDaw {
                         System.out.println();
                         System.out.println("Pelicula devuelta");
                         System.out.println();
-                    } 
-                    
-                    else {
+                    } else {
                         System.out.println();
-                        System.out.println("No se a podido devolver la pelicula");
+                        System.out.println("No se ha podido devolver la pelicula");
                         System.out.println();
                     }
 
@@ -236,9 +233,7 @@ public class GestionVideoDaw {
                         System.out.println();
                         System.out.println("Cliente dado de baja");
                         System.out.println();
-                    } 
-                    
-                    else {
+                    } else {
                         System.out.println();
                         System.out.println("Cliente no encontrado");
                         System.out.println();
@@ -261,9 +256,7 @@ public class GestionVideoDaw {
                         System.out.println();
                         System.out.println("Pelicula dada de baja");
                         System.out.println();
-                    } 
-                    
-                    else {
+                    } else {
                         System.out.println();
                         System.out.println("Pelicula no encontrada");
                         System.out.println();
@@ -282,19 +275,53 @@ public class GestionVideoDaw {
 
                 default:
                     System.out.println();
-                    System.out.println("Opcion incorrecta. Prueba de nuevo");
+                    System.out.println("Opcion incorrecta, Prueba de nuevo");
                     System.out.println();
 
                     break;
             }
-        } while (!opcion.equals("8"));
+        } 
+        
+        while (!opcion.equals("8"));
 
         teclado.close();
     }
 
     private static boolean setValidCif(String cif) {
-
         return cif.matches("[A-Z]{1}[0-9]{8}");
     }
-}
 
+    private static boolean esMayorDeEdad(LocalDate fechaNacimiento) {
+        LocalDate hoy = LocalDate.now();
+
+        int edad = Period.between(fechaNacimiento, hoy).getYears();
+
+        return edad >= 18;
+    }
+
+    private static void mostrarPeliculasRegistradas(VideoDaw videoClub) {
+        System.out.println("Peliculas registradas:");
+
+        for (int i = 0; i < videoClub.getNumPeliculas(); i++) {
+
+            System.out.println(videoClub.getPeliculasRegistradas()[i].mostrarInfoPelicula());
+        }
+        System.out.println();
+    }
+
+    private static void mostrarClientesRegistrados(VideoDaw videoClub) {
+        System.out.println("Clientes registrados:");
+
+        for (int i = 0; i < videoClub.getNumClientes(); i++) {
+
+            System.out.println(videoClub.getClientesRegistrados()[i].mostrarInfoCliente());
+        }
+        System.out.println();
+    }
+
+    private static void mostrarPeliculasAlquiladas(Cliente cliente) {
+        System.out.println("Peliculas alquiladas:");
+        System.out.println();
+        System.out.println(cliente.mostrarPeliculasAlquiladas());
+    }
+}
