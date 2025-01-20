@@ -1,4 +1,4 @@
-public class Contacto {
+class Contacto {
     private String nombre;
     private String telefono;
 
@@ -13,7 +13,13 @@ public class Contacto {
     }
 
     public String getTelefono() {
-        
+
         return telefono;
+    }
+
+    @Override
+    public String toString() {
+
+        return "Contacto - Nombre: " + nombre + ", - Numero de telefono: " + telefono;
     }
 }
