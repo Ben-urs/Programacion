@@ -1,42 +1,42 @@
-import java.util.ArrayList;
-import java.util.Scanner;
-
-public class Agenda {
-    private ArrayList<Contacto> contactos;
+class Agenda {
+    private Contacto[] contactos;
+    private int contador;
 
     public Agenda() {
-        contactos = new ArrayList<>();
+        contactos = new Contacto[5]; 
+        contador = 0;
     }
 
-    public boolean añadirContacto() {
-        Scanner scanner = new Scanner(System.in);
-        
-        System.out.print("\nIngrese el nombre del contacto: ");
-        String nombre = scanner.nextLine();
-        
-        System.out.print("\nIngrese el telefono del contacto: ");
-        String telefono = scanner.nextLine();
-        
-        Contacto nuevoContacto = new Contacto(nombre, telefono);
-        
-        if (!existeContacto(nuevoContacto.getNombre())) {
-            contactos.add(nuevoContacto);
+    public boolean añadirContacto(Contacto nuevoContacto) {
+        if (contador >= contactos.length) {
+            System.out.println("\nLa agenda esta llena");
 
-            return true; 
+            return false;
         }
-        
+
+        if (!existeContacto(nuevoContacto.getNombre())) {
+            contactos[contador] = nuevoContacto;
+            contador++;
+
+            return true;
+        }
+
         return false; 
     }
 
     public boolean eliminarContacto(String nombre) {
-
         int index = buscaContacto(nombre);
-        if (index != -1) {           
-            contactos.remove(index);
+
+        if (index != -1) {
+            for (int i = index; i < contador - 1; i++) {
+                contactos[i] = contactos[i + 1];
+            }
+            contactos[contador - 1] = null; 
+            contador--;
 
             return true; 
         }
-        
+
         return false; 
     }
 
@@ -46,29 +46,25 @@ public class Agenda {
     }
 
     public void listarContactos() {
-
-        if (contactos.isEmpty()) {
-            System.out.println("\nLa agenda esta vacia.");
-
+        if (contador == 0) {
+            System.out.println("\nLa agenda esta vacia");
         } 
         
         else {
-
-            for (Contacto c : contactos) {
-                System.out.println("Nombre: " + c.getNombre() + ", Telefono: " + c.getTelefono());
+            for (int i = 0; i < contador; i++) {
+                System.out.println(contactos[i].toString());
             }
         }
     }
 
     public int buscaContacto(String nombre) {
-
-        for (int i = 0; i < contactos.size(); i++) {
-            if (contactos.get(i).getNombre().equalsIgnoreCase(nombre)) {
+        for (int i = 0; i < contador; i++) {
+            if (contactos[i].getNombre().equalsIgnoreCase(nombre)) {
 
                 return i; 
             }
         }
-
+        
         return -1; 
     }
 }
