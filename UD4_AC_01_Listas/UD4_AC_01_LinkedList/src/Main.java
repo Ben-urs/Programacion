@@ -31,7 +31,7 @@ public class Main {
         productos.remove(producto3); 
         productos.remove(producto4); 
 
-        Producto productoNuevo = new Producto("Levadura Fresca", 6);
+        Producto productoNuevo = new Producto("Levadura Fresca", 3);
         productos.add(1, productoNuevo);
 
         System.out.println("\nContenido del LinkedList: ");
