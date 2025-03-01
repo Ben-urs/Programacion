@@ -24,7 +24,6 @@ public class GestionVideoDaw {
             if (!videoClubCreado) {
                 System.out.println("1. Crear y registrar VideoClub");
             } 
-            
             else {
                 System.out.println("\n2. Registrar articulo en videoclub");
                 System.out.println("3. Crear y registrar cliente en videoclub");
@@ -48,7 +47,6 @@ public class GestionVideoDaw {
                     if (!videoClubCreado) {
                         System.out.println("Primero debe crear y registrar el VideoClub");
                     } 
-                    
                     else {
                         registrarArticulo();
                     }
@@ -58,7 +56,6 @@ public class GestionVideoDaw {
                     if (!videoClubCreado) {
                         System.out.println("Primero debe crear y registrar el VideoClub");
                     } 
-                    
                     else {
                         registrarCliente();
                     }
@@ -68,7 +65,6 @@ public class GestionVideoDaw {
                     if (!videoClubCreado) {
                         System.out.println("Primero debe crear y registrar el VideoClub");
                     } 
-                    
                     else {
                         alquilarArticulo();
                     }
@@ -78,7 +74,6 @@ public class GestionVideoDaw {
                     if (!videoClubCreado) {
                         System.out.println("Primero debe crear y registrar el VideoClub");
                     } 
-                    
                     else {
                         devolverArticulo();
                     }
@@ -87,7 +82,8 @@ public class GestionVideoDaw {
                 case 6:
                     if (!videoClubCreado) {
                         System.out.println("Primero debe crear y registrar el VideoClub");
-                    } else {
+                    } 
+                    else {
                         darDeBajaCliente();
                     }
                     break;
@@ -96,7 +92,6 @@ public class GestionVideoDaw {
                     if (!videoClubCreado) {
                         System.out.println("Primero debe crear y registrar el VideoClub");
                     } 
-                    
                     else {
                         darDeBajaArticulo();
                     }
@@ -110,7 +105,6 @@ public class GestionVideoDaw {
                     System.out.println("\nOpcion no válida. Intentelo de nuevo");
             }
         } 
-        
         while (opcion != 8);
     }
 
@@ -124,7 +118,6 @@ public class GestionVideoDaw {
             if (Validador.validarCIF(cif)) {
                 break; 
             } 
-            
             else {
                 System.out.println("\nCIF invalido. Debe tener el formato correcto");
             }
@@ -160,7 +153,6 @@ public class GestionVideoDaw {
                     System.out.println("\nOpcion no valida. Intentelo de nuevo");
             }
         } 
-        
         while (opcionArticulo != 3);
     }
 
@@ -172,7 +164,6 @@ public class GestionVideoDaw {
             if (Validador.validarCodigoPelicula(codPelicula)) {
                 break; 
             } 
-            
             else {
                 System.out.println("\nCodigo de pelicula invalido. Debe seguir el formato P-0001");
             }
@@ -189,7 +180,6 @@ public class GestionVideoDaw {
                 fechaRegistroPelicula = LocalDate.parse(scanner.nextLine());
                 break; 
             } 
-            
             catch (Exception e) {
                 System.out.println("\nFecha invalida. Intentelo de nuevo");
             }
@@ -202,7 +192,6 @@ public class GestionVideoDaw {
                 generoPelicula = Pelicula.Genero.valueOf(scanner.nextLine().toUpperCase());
                 break; 
             } 
-            
             catch (IllegalArgumentException e) {
                 System.out.println("\nGenero invalido. Intentelo de nuevo");
             }
@@ -212,7 +201,6 @@ public class GestionVideoDaw {
         try {
             videoDaw.registrarArticulo(pelicula);
         } 
-        
         catch (VideoClubException e) {
             System.out.println(e.getMessage());
         }
@@ -226,7 +214,6 @@ public class GestionVideoDaw {
             if (Validador.validarCodigoVideojuego(codVideojuego)) { 
                 break; 
             } 
-            
             else {
                 System.out.println("\nCodigo de videojuego invalido. Debe seguir el formato V-0001");
             }
@@ -243,7 +230,6 @@ public class GestionVideoDaw {
                 fechaRegistroVideojuego = LocalDate.parse(scanner.nextLine());
                 break; 
             } 
-            
             catch (Exception e) {
                 System.out.println("\nFecha invalida. Intentelo de nuevo");
             }
@@ -256,7 +242,6 @@ public class GestionVideoDaw {
                 generoVideojuego = Videojuego.Genero.valueOf(scanner.nextLine().toUpperCase());
                 break; 
             } 
-            
             catch (IllegalArgumentException e) {
                 System.out.println("\nGenero invalido. Intente de nuevo");
             }
@@ -266,7 +251,6 @@ public class GestionVideoDaw {
         try {
             videoDaw.registrarArticulo(videojuego);
         } 
-        
         catch (VideoClubException e) {
             System.out.println(e.getMessage());
         }
@@ -281,7 +265,6 @@ public class GestionVideoDaw {
             if (Validador.validarDNI(dniCliente)) {
                 break; 
             } 
-            
             else {
                 System.out.println("\nDNI invalido. Debe tener el formato correcto");
             }
@@ -298,12 +281,10 @@ public class GestionVideoDaw {
                 if (Validador.esMayorDeEdad(fechaNacimientoCliente)) {
                     break; 
                 } 
-                
                 else {
                     System.out.println("\nEl cliente debe ser mayor de edad");
                 }
             } 
-            
             catch (Exception e) {
                 System.out.println("\nFecha invalida. Intentelo de nuevo");
             }
@@ -316,7 +297,6 @@ public class GestionVideoDaw {
             if (Validador.validarNumeroSocio(numSocio)) {
                 break; 
             } 
-            
             else {
                 System.out.println("\nNumero de socio invalido. Debe seguir el formato S-0001");
             }
@@ -326,7 +306,6 @@ public class GestionVideoDaw {
         try {
             videoDaw.registrarCliente(cliente);
         } 
-        
         catch (VideoClubException e) {
             System.out.println(e.getMessage());
         }
@@ -353,56 +332,50 @@ public class GestionVideoDaw {
                     System.out.println("Fecha de alquiler: " + LocalDate.now());
                     break; 
                 } 
-                
                 else {
                     System.out.println("\nCliente no encontrado. Intente de nuevo");
                 }
             } 
-            
             else {
                 System.out.println("\nArtículo no encontrado. Intente de nuevo");
             }
         }
     }
     
-private void devolverArticulo() {
-    String codDevolver;
-    while (true) {
-        System.out.print("\nIngrese el codigo del articulo que va a devolver: ");
-        codDevolver = scanner.nextLine();
-        Articulo articuloDevolver = buscarArticulo(codDevolver);
-        
-        if (articuloDevolver != null) {
-            System.out.print("Ingrese el numero de socio del cliente: ");
-            String numSocioDevolver = scanner.nextLine();
-            Cliente clienteDevolver = buscarCliente(numSocioDevolver);
+    private void devolverArticulo() {
+        String codDevolver;
+        while (true) {
+            System.out.print("\nIngrese el codigo del articulo que va a devolver: ");
+            codDevolver = scanner.nextLine();
+            Articulo articuloDevolver = buscarArticulo(codDevolver);
             
-            if (clienteDevolver != null) {
-                try {
-                    videoDaw.devolverArticulo(articuloDevolver, clienteDevolver);
-                    
-                    System.out.println("\nArticulo devuelto: ");
-                    System.out.println("Nombre: " + articuloDevolver.getTitulo());
-                    System.out.println("Género: " + articuloDevolver.getGenero()); 
-                    System.out.println("Fecha de devolucion: " + LocalDate.now());
-                    break; 
-                } 
+            if (articuloDevolver != null) {
+                System.out.print("Ingrese el numero de socio del cliente: ");
+                String numSocioDevolver = scanner.nextLine();
+                Cliente clienteDevolver = buscarCliente(numSocioDevolver);
                 
-                catch (VideoClubException e) {
-                    System.out.println(e.getMessage());
+                if (clienteDevolver != null) {
+                    try {
+                        videoDaw.devolverArticulo(articuloDevolver, clienteDevolver);
+                        System.out.println("\nArticulo devuelto: ");
+                        System.out.println("Nombre: " + articuloDevolver.getTitulo());
+                        System.out.println("Género: " + articuloDevolver.getGenero()); 
+                        System.out.println("Fecha de devolucion: " + LocalDate.now());
+                        break; 
+                    } 
+                    catch (VideoClubException e) {
+                        System.out.println(e.getMessage());
+                    }
+                } 
+                else {
+                    System.out.println("\nCliente no encontrado. Intente de nuevo");
                 }
             } 
-            
             else {
-                System.out.println("\nCliente no encontrado. Intente de nuevo");
+                System.out.println("\nArticulo no encontrado. Intente de nuevo");
             }
-        } 
-        
-        else {
-            System.out.println("\nArticulo no encontrado. Intente de nuevo");
         }
     }
-}
 
     private void darDeBajaCliente() {
         String numSocioBaja;
@@ -413,7 +386,6 @@ private void devolverArticulo() {
                 videoDaw.darDeBajaCliente(numSocioBaja);
                 break; 
             } 
-            
             catch (VideoClubException e) {
                 System.out.println(e.getMessage());
             }
@@ -429,7 +401,6 @@ private void devolverArticulo() {
                 videoDaw.darDeBajaArticulo(codBaja);
                 break; 
             } 
-            
             catch (VideoClubException e) {
                 System.out.println(e.getMessage());
             }

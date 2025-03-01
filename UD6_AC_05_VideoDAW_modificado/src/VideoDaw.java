@@ -35,75 +35,84 @@ public class VideoDaw {
     }
 
     public void alquilarArticulo(Articulo articulo, Cliente cliente) {
-        if (articulo instanceof Pelicula) {
-            Pelicula pelicula = (Pelicula) articulo;
-            if (!pelicula.isAlquilada()) {
-                pelicula.setAlquilada(true);
-                pelicula.setFechaAlquiler(LocalDateTime.now());
-                cliente.getArticulosAlquilados().add(pelicula);
-                System.out.println("\nArticulo alquilado: " + pelicula.getTitulo());
-            } 
-            
-            else {
-                System.out.println("\nEl articulo ya esta alquilado");
+        articulo.aceptar(new ArticuloA() {
+            @Override
+            public void a(Pelicula pelicula) {
+                if (!pelicula.isAlquilada()) {
+                    pelicula.setAlquilada(true);
+                    pelicula.setFechaAlquiler(LocalDateTime.now());
+                    cliente.getArticulosAlquilados().add(pelicula);
+                    System.out.println("\nArticulo alquilado: " + pelicula.getTitulo());
+                } 
+                else {
+                    System.out.println("\nEl articulo ya esta alquilado");
+                }
             }
-        } 
-        
-        else if (articulo instanceof Videojuego) {
-            Videojuego videojuego = (Videojuego) articulo;
-            if (!videojuego.isAlquilada()) {
-                videojuego.setAlquilada(true);
-                videojuego.setFechaAlquiler(LocalDateTime.now());
-                cliente.getArticulosAlquilados().add(videojuego);
-                System.out.println("\nArtículo alquilado: " + videojuego.getTitulo());
-            } 
-            
-            else {
-                System.out.println("\nEl articulo ya esta alquilado.");
+
+            @Override
+            public void a(Videojuego videojuego) {
+                if (!videojuego.isAlquilada()) {
+                    videojuego.setAlquilada(true);
+                    videojuego.setFechaAlquiler(LocalDateTime.now());
+                    cliente.getArticulosAlquilados().add(videojuego);
+                    System.out.println("\nArtículo alquilado: " + videojuego.getTitulo());
+                } 
+                else {
+                    System.out.println("\nEl articulo ya esta alquilado.");
+                }
             }
-        }
+        });
     }
 
     public void devolverArticulo(Articulo articulo, Cliente cliente) throws VideoClubException {
-        if (articulo instanceof Pelicula) {
-            Pelicula pelicula = (Pelicula) articulo;
-            if (pelicula.isAlquilada()) {
-                LocalDateTime fechaActual = LocalDateTime.now();
-                if (fechaActual.isBefore(pelicula.getFechaAlquiler().plusHours(48))) {
-                    pelicula.setAlquilada(false);
-                    cliente.getArticulosAlquilados().remove(pelicula);
-                    System.out.println("Articulo devuelto: " + pelicula.getTitulo());
+        articulo.aceptar(new ArticuloA() {
+            @Override
+            public void a(Pelicula pelicula) {
+                if (pelicula.isAlquilada()) {
+                    LocalDateTime fechaActual = LocalDateTime.now();
+                    if (fechaActual.isBefore(pelicula.getFechaAlquiler().plusHours(48))) {
+                        pelicula.setAlquilada(false);
+                        cliente.getArticulosAlquilados().remove(pelicula);
+                        System.out.println("Articulo devuelto: " + pelicula.getTitulo());
+                    } 
+                    else {
+
+                        try {
+                            throw new VideoClubException("\nEl tiempo de alquiler ha excedido las 48 horas");
+                        } 
+                        catch (VideoClubException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
                 } 
-                
                 else {
-                    throw new VideoClubException("\nEl tiempo de alquiler ha excedido las 48 horas");
+                    System.out.println("\nEl articulo no esta alquilado");
                 }
-            } 
-            
-            else {
-                System.out.println("\nEl articulo no esta alquilado");
             }
-        } 
-        
-        else if (articulo instanceof Videojuego) {
-            Videojuego videojuego = (Videojuego) articulo;
-            if (videojuego.isAlquilada()) {
-                LocalDateTime fechaActual = LocalDateTime.now();
-                if (fechaActual.isBefore(videojuego.getFechaAlquiler().plusHours(48))) {
-                    videojuego.setAlquilada(false);
-                    cliente.getArticulosAlquilados().remove(videojuego);
-                    System.out.println("\nArticulo devuelto: " + videojuego.getTitulo());
+    
+            @Override
+            public void a(Videojuego videojuego) {
+                if (videojuego.isAlquilada()) {
+                    LocalDateTime fechaActual = LocalDateTime.now();
+                    if (fechaActual.isBefore(videojuego.getFechaAlquiler().plusHours(48))) {
+                        videojuego.setAlquilada(false);
+                        cliente.getArticulosAlquilados().remove(videojuego);
+                        System.out.println("\nArticulo devuelto: " + videojuego.getTitulo());
+                    } else {
+
+                        try {
+                            throw new VideoClubException("\nEl tiempo de alquiler ha excedido las 48 horas");
+                        } 
+                        catch (VideoClubException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
                 } 
-                
                 else {
-                    throw new VideoClubException("\nEl tiempo de alquiler ha excedido las 48 horas");
+                    System.out.println("\nEl articulo no esta alquilado");
                 }
-            } 
-            
-            else {
-                System.out.println("\nEl articulo no esta alquilado");
             }
-        }
+        });
     }
 
     public void registrarArticulo(Articulo articulo) throws VideoClubException {
@@ -140,7 +149,6 @@ public class VideoDaw {
             clientesRegistrados.remove(clienteABaja); 
             System.out.println("\nCliente dado de baja: " + clienteABaja.getNombre());
         } 
-        
         else {
             throw new VideoClubException("\nCliente no encontrado con el numero de socio: " + numSocio);
         }
@@ -160,7 +168,6 @@ public class VideoDaw {
             articulosRegistrados.remove(articuloABaja); 
             System.out.println("\nArticulo dado de baja: " + articuloABaja.getTitulo());
         } 
-        
         else {
             throw new VideoClubException("\nArticulo no encontrado con el codigo: " + cod);
         }

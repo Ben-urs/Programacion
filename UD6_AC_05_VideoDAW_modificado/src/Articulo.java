@@ -35,6 +35,8 @@ public abstract class Articulo {
 
     public abstract String getGenero(); 
 
+    public abstract void aceptar(ArticuloA a); 
+
     @Override
     public String toString() {
         return "Codigo: " + cod + ", Titulo: " + titulo + ", Fecha de Registro: " + fechaRegistro + ", Fecha de Baja: " + fechaBaja;

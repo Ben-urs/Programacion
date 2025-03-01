@@ -41,6 +41,10 @@ public class Videojuego extends Articulo {
         this.fechaAlquiler = fechaAlquiler;
     }
 
+    public void aceptar(ArticuloA a) {
+        a.a(this);
+    }
+
     @Override
     public String toString() {
         return super.toString() + ", Genero: " + genero + ", Alquilada: " + isAlquilada;
