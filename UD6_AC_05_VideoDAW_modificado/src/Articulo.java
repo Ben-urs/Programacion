@@ -33,6 +33,8 @@ public abstract class Articulo {
         this.fechaBaja = fechaBaja;
     }
 
+    public abstract String getGenero(); 
+
     @Override
     public String toString() {
         return "Codigo: " + cod + ", Titulo: " + titulo + ", Fecha de Registro: " + fechaRegistro + ", Fecha de Baja: " + fechaBaja;

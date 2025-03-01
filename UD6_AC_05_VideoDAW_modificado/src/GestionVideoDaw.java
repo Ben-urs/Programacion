@@ -335,70 +335,74 @@ public class GestionVideoDaw {
     private void alquilarArticulo() {
         String codAlquilar;
         while (true) {
-            System.out.print("\nIngrese el codigo del articulo que va ha alquilar: ");
+            System.out.print("\nIngrese el codigo del articulo que va a alquilar: ");
             codAlquilar = scanner.nextLine();
             Articulo articuloAlquilar = buscarArticulo(codAlquilar);
+            
             if (articuloAlquilar != null) {
                 System.out.print("Ingrese el numero de socio del cliente: ");
                 String numSocioAlquilar = scanner.nextLine();
                 Cliente clienteAlquilar = buscarCliente(numSocioAlquilar);
+                
                 if (clienteAlquilar != null) {
                     videoDaw.alquilarArticulo(articuloAlquilar, clienteAlquilar);
                     
-                    System.out.println("\nArtículo alquilado:");
+                    System.out.println("\nArtículo alquilado: ");
                     System.out.println("Nombre: " + articuloAlquilar.getTitulo());
-                    System.out.println("Género: " + ((articuloAlquilar instanceof Pelicula) ? ((Pelicula) articuloAlquilar).getGenero() : ((Videojuego) articuloAlquilar).getGenero()));
+                    System.out.println("Genero: " + articuloAlquilar.getGenero()); 
                     System.out.println("Fecha de alquiler: " + LocalDate.now());
                     break; 
                 } 
                 
                 else {
-                    System.out.println("\nCliente no encontrado. Intentelo de nuevo");
+                    System.out.println("\nCliente no encontrado. Intente de nuevo");
                 }
             } 
             
             else {
-                System.out.println("\nArticulo no encontrado. Intenteño de nuevo");
+                System.out.println("\nArtículo no encontrado. Intente de nuevo");
             }
         }
     }
-
-    private void devolverArticulo() {
-        String codDevolver;
-        while (true) {
-            System.out.print("\nIngrese el codigo del articulo que va ha devolver: ");
-            codDevolver = scanner.nextLine();
-            Articulo articuloDevolver = buscarArticulo(codDevolver);
-            if (articuloDevolver != null) {
-                System.out.print("Ingrese el numero de socio del cliente: ");
-                String numSocioDevolver = scanner.nextLine();
-                Cliente clienteDevolver = buscarCliente(numSocioDevolver);
-                if (clienteDevolver != null) {
-                    try {
-                        videoDaw.devolverArticulo(articuloDevolver, clienteDevolver);
-                        
-                        System.out.println("\nArtículo devuelto: ");
-                        System.out.println("Nombre: " + articuloDevolver.getTitulo());
-                        System.out.println("Genero: " + ((articuloDevolver instanceof Pelicula) ? ((Pelicula) articuloDevolver).getGenero() : ((Videojuego) articuloDevolver).getGenero()));
-                        System.out.println("Fecha de devolucion: " + LocalDate.now());
-                        break; 
-                    } 
+    
+private void devolverArticulo() {
+    String codDevolver;
+    while (true) {
+        System.out.print("\nIngrese el codigo del articulo que va a devolver: ");
+        codDevolver = scanner.nextLine();
+        Articulo articuloDevolver = buscarArticulo(codDevolver);
+        
+        if (articuloDevolver != null) {
+            System.out.print("Ingrese el numero de socio del cliente: ");
+            String numSocioDevolver = scanner.nextLine();
+            Cliente clienteDevolver = buscarCliente(numSocioDevolver);
+            
+            if (clienteDevolver != null) {
+                try {
+                    videoDaw.devolverArticulo(articuloDevolver, clienteDevolver);
                     
-                    catch (VideoClubException e) {
-                        System.out.println(e.getMessage());
-                    }
+                    System.out.println("\nArticulo devuelto: ");
+                    System.out.println("Nombre: " + articuloDevolver.getTitulo());
+                    System.out.println("Género: " + articuloDevolver.getGenero()); 
+                    System.out.println("Fecha de devolucion: " + LocalDate.now());
+                    break; 
                 } 
                 
-                else {
-                    System.out.println("\nCliente no encontrado. Intentelo de nuevo");
+                catch (VideoClubException e) {
+                    System.out.println(e.getMessage());
                 }
             } 
             
             else {
-                System.out.println("\nArticulo no encontrado. Intentelo de nuevo");
+                System.out.println("\nCliente no encontrado. Intente de nuevo");
             }
+        } 
+        
+        else {
+            System.out.println("\nArticulo no encontrado. Intente de nuevo");
         }
     }
+}
 
     private void darDeBajaCliente() {
         String numSocioBaja;

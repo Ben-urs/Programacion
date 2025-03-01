@@ -16,8 +16,13 @@ public class Videojuego extends Articulo {
         this.isAlquilada = false;
     }
 
-    public Genero getGenero() {
+    public Genero getGeneroEnum() {
         return genero; 
+    }
+
+    @Override
+    public String getGenero() {
+        return genero.toString(); 
     }
 
     public boolean isAlquilada() {
