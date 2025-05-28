@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="640.0" prefWidth="480.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vetdaw.HelloController">
+
+    <children>
+        
+        <!-- Contenedor -->
+        <VBox fx:id="registroPanel" alignment="CENTER" layoutY="3.0" prefHeight="640.0" prefWidth="480.0" spacing="25.0" style="-fx-background-color: white;">
+            <padding>
+                <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+            </padding>
+            <children>
+                <Button fx:id="flechaRegreso" ellipsisString="←" mnemonicParsing="false" prefHeight="30.0" prefWidth="31.0" style="-fx-background-color: Black;" text="←" textFill="WHITE">
+                    <font>
+                        <Font name="Calibri Bold" size="18.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <VBox.margin>
+                        <Insets bottom="100.0" left="-350.0" right="50.0" top="-100.0" />
+                    </VBox.margin>
+                </Button>
+                <!-- Título centrado -->
+                <HBox alignment="CENTER">
+                    <children>
+                        <Label text="VetDaw">
+                            <font>
+                                <Font name="Century" size="48.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+
+                <Separator prefHeight="12.0" prefWidth="274.0" />
+
+                <!-- REGISTRO -->
+
+                <!-- Nombre -->
+                <TextField fx:id="nombreMField" maxWidth="200.0" prefHeight="27.0" prefWidth="200.0" promptText="Nombre" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;">
+                    <VBox.margin>
+                        <Insets left="-230.0" />
+                    </VBox.margin>
+                    <cursor>
+                        <Cursor fx:constant="TEXT" />
+                    </cursor></TextField>
+
+                <!-- Pasaporte -->
+                <TextField fx:id="pasaporteField" maxWidth="200.0" prefHeight="27.0" prefWidth="200.0" promptText="Pasaporte" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;">
+                    <VBox.margin>
+                        <Insets left="250.0" top="-50.0" />
+                    </VBox.margin>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets></TextField>
+
+                <!-- Fecha de nacimiento -->
+                <DatePicker fx:id="fechaNacimientoMField" maxWidth="200.0" prefHeight="27.0" prefWidth="200.0" promptText="Fecha de nacimiento">
+                    <VBox.margin>
+                        <Insets left="-230.0" />
+                    </VBox.margin>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets></DatePicker>
+
+                <!-- Peso -->
+                <TextField fx:id="pesoField" maxWidth="200.0" prefHeight="27.0" prefWidth="200.0" promptText="Peso" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;">
+                    <VBox.margin>
+                        <Insets left="250.0" top="-50.0" />
+                    </VBox.margin></TextField>
+                <!-- Propietario -->
+            <ComboBox fx:id="propietarioField" maxWidth="200.0" prefHeight="27.0" prefWidth="200.0" promptText="Propietario">
+               <VBox.margin>
+                  <Insets left="-230.0" />
+               </VBox.margin>
+            </ComboBox>
+                <Label fx:id="welcomeText2" text="" textFill="RED" />
+                <Button fx:id="RegistroButton" mnemonicParsing="false" onAction="#onRegistroButton" prefHeight="50.0" prefWidth="159.0" style="-fx-background-color: Black;" text="Registrar" textFill="WHITE">
+                    <font>
+                        <Font name="Calibri Bold" size="18.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <VBox.margin>
+                        <Insets left="290.0" />
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
